@@ -105,7 +105,7 @@ export default function SignUp() {
         )}
         <div className="rgister">
           <button type="submit" onSubmit={sendData}>
-            Redister
+            Register
           </button>
         </div>
       </form>

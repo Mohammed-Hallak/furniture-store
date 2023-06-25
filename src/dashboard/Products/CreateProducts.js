@@ -62,6 +62,7 @@ export default function CreateProducts() {
       };
 
       setSendProducts(data);
+      window.location.pathname="dashboard/products"
 
       setId(id + 1);
     }

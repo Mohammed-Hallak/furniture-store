@@ -81,12 +81,23 @@ export default function Products() {
     }
   }, [run]);
 
+  let windowWidthh = window.innerWidth;
   let showProducts = products.map((product, index) => (
     <tr key={index}>
       <td>{index + 1}</td>
       <td>{product.title}</td>
       <td>{product.description}</td>
-      <td>
+      <td
+        style={
+          windowWidthh < 768
+            ? {
+                display: "none",
+              }
+            : {
+                display: "table-cell",
+              }
+        }
+      >
         <Link to={`${product.id}`}>
           <i
             className="fa-solid fa-edit"
@@ -117,7 +128,7 @@ export default function Products() {
       console.log(err);
     }
   }
-
+  let windowWidth = window.innerWidth;
   return (
     <div style={{ width: "100%" }}>
       <table style={{ height: "fit-content" }}>
@@ -126,7 +137,19 @@ export default function Products() {
             <th>Id</th>
             <th>Title</th>
             <th>Description</th>
-            <th>Action</th>
+            <th
+              style={
+                windowWidthh < 768
+                  ? {
+                      display: "none",
+                    }
+                  : {
+                      display: "table-cell",
+                    }
+              }
+            >
+              Action
+            </th>
           </tr>
         </thead>
         <tbody>{showProducts}</tbody>

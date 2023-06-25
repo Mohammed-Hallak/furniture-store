@@ -60,7 +60,8 @@ export default function Footer() {
           </div>
         </div>
         <div className="copyRight">
-          <p>&copy; 2022 All Rights Reseved .By AlHallak </p>
+          <p>&copy; 2022 All Rights Reseved ,
+            By <span>AlHallak</span> </p>
         </div>
       </div>
     </div>

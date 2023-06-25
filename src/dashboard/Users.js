@@ -63,8 +63,12 @@ export default function Users() {
       <td>{user.email}</td>
       <td style={
                 windowWidthh < 768
-                  ? { display: "none" }
-                  : { display: "inline-block" }
+                  ? {
+                      display: "none",
+                    }
+                  : {
+                    display:"table-cell"
+                  }
               }>
         <Link to={`${user.id}`}>
           <i
@@ -97,8 +101,12 @@ export default function Users() {
             <th
               style={
                 windowWidth < 768
-                  ? { display: "none" }
-                  : { display: "inline-block" }
+                  ? {
+                      display: "none",
+                    }
+                  : {
+                    display:"table-cell"
+                  }
               }
             >
               Action

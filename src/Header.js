@@ -1,13 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import { User } from "./UserContext";
-import { Users } from "./Userscontext";
-import { useContext, useEffect, useState } from "react";
-import axios from "axios";
-import Cookies from "universal-cookie";
+import { useEffect, useRef, useState } from "react";
 
 export default function Header() {
   let nav = useNavigate();
-
+  const ref = useRef();
   const [click, setClick] = useState(false);
 
   function logout(e) {
@@ -16,9 +12,30 @@ export default function Header() {
     nav("/");
   }
 
+  useEffect(() => {
+    // إضافة مستمع حدث النقر إلى document
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      // إزالة مستمع حدث النقر عند إزالة المكون
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (e) => {
+    // تحقق مما إذا كانت النقرة خارج المحتوى أو على أي عنصر آخر غير المحتوى
+    if (ref.current && !ref.current.contains(e.target) && e.target.className !== "content" && e.target.className !== "fa-solid fa-bars") {
+      setClick(false);
+    } else {
+      setClick(true);
+    }
+  };
+
   function openDropDown(e) {
     e.preventDefault();
-    setClick(!click);
+    if (!click || e.target.className === "fa-solid fa-bars") {
+      setClick(!click);
+    }
   }
 
   return (
@@ -30,7 +47,11 @@ export default function Header() {
           </div>
 
           <div className={click ? "drop-down click" : "drop-down"}>
-            <i onClick={openDropDown} className=" fa-solid fa-bars"></i>
+            <i
+              onClick={openDropDown}
+              ref={ref}
+              className=" fa-solid fa-bars"
+            ></i>
             <div className="holder">
               <Link to={"/"} className="register-nav">
                 Home

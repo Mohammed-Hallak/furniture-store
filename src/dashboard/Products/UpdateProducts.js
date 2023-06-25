@@ -9,6 +9,7 @@ export default function UpdateProducts() {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [accept, setAccept] = useState(false);
+  const [Products, setProducts] = useState([]);
 
   let id = window.location.pathname.split("/").slice(-1)[0];
 
@@ -17,40 +18,87 @@ export default function UpdateProducts() {
   let showToken = useContext(User);
   let token = showToken.auth.token;
 
-  useEffect(() => {
-    axios
-      .get(`http://127.0.0.1:8000/api/product/showbyid/${id}`, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      })
-      .then((data) => {
-        setTitle(data.data[0].title);
-        setDescription(data.data[0].description);
-      })
-      .catch((err) => console.log(err));
-  },[]);
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://127.0.0.1:8000/api/product/showbyid/${id}`, {
+  //       headers: {
+  //         Authorization: "Bearer " + token,
+  //       },
+  //     })
+  //     .then((data) => {
+  //       setTitle(data.data[0].title);
+  //       setDescription(data.data[0].description);
+  //     })
+  //     .catch((err) => console.log(err));
+  // },[]);
 
-  async function sendData(e) {
+  useEffect(() => {
+    let getData = localStorage.getItem("SendProducts");
+    let convertToJson = JSON.parse(getData);
+    convertToJson.map((data, index) => {
+      if (data.id === parseInt(id)) {
+        setTitle(data.title);
+        setDescription(data.description);
+        return <span key={index}></span>;
+      }
+    });
+  }, []);
+
+  // async function sendData(e) {
+  //   e.preventDefault();
+  //   setAccept(true);
+  //   try {
+  //     let formData = new FormData();
+
+  //     formData.append("title", title);
+  //     formData.append("description", description);
+  //     formData.append("image", image);
+
+  //     await axios.post(
+  //       `http://127.0.0.1:8000/api/product/update/${id}`,
+  //       formData,
+  //       {
+  //         headers: {
+  //           Authorization: "Bearer " + token,
+  //         },
+  //       }
+  //     );
+  //     nav("/dashboard/products");
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
+
+  function sendData(e) {
     e.preventDefault();
     setAccept(true);
     try {
-      let formData = new FormData();
+      let getData = localStorage.getItem("SendProducts");
+      let convertDataToJson = JSON.parse(getData);
 
-      formData.append("title", title);
-      formData.append("description", description);
-      formData.append("image", image);
+      convertDataToJson.map((data, index) => {
+        if (data.id === parseInt(id)) {
+          data.title = title;
+          data.description = description;
+          data.image = image;
 
-      await axios.post(
-        `http://127.0.0.1:8000/api/product/update/${id}`,
-        formData,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
+          let filteredUsers = convertDataToJson.filter(
+            (user) => user.id !== parseInt(id)
+          );
+
+          let updatedUsers = [...filteredUsers, data];
+
+          let sortedUsers = updatedUsers.sort((a, b) => a.id - b.id);
+
+          localStorage.setItem("SendProducts", JSON.stringify(sortedUsers));
+
+          setProducts(updatedUsers);
+
+          nav("/dashboard/products");
+
+          return <span key={index}></span>;
         }
-      );
-      nav("/dashboard/products");
+      });
     } catch (err) {
       console.log(err);
     }

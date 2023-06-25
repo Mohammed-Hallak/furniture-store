@@ -18,7 +18,9 @@ export default function AboutUs(props) {
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam
             </p>
-            <span>Made By Hallak</span>
+            <span className="holder-my-name">
+              Made By <span className="my-name">AlHallak</span>
+            </span>
           </>
         )}
         {props.show && (

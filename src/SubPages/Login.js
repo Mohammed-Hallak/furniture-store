@@ -72,7 +72,7 @@ export default function Login() {
 
         <div className="rgister">
           <button type="submit" onSubmit={sendData}>
-            SignUp
+            Log in
           </button>
         </div>
       </form>

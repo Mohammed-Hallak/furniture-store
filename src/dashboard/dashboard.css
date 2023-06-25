@@ -100,9 +100,9 @@
   height: 300px;
   background-color: #fff;
   position: absolute;
-  left: -538%;
+  left: -540%;
   display: inline-block;
-  top: 46px;
+  top: 48px;
   z-index: 1120;
   padding: 30px;
   border-radius: 5px;
@@ -171,6 +171,12 @@ table {
 @media (max-width: 768px) {
   table {
     margin-top: 55px;
+  }
+}
+@media (max-width: 564px) {
+  table {
+    width: 80%;
+    margin: 55px auto 0;
   }
 }
 tr:nth-child(even) {

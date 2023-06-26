@@ -14,6 +14,7 @@ import AboutUsPage from "./SubPages/AboutUsPage";
 import Page from "./MainPages/Page";
 import ContactUsPage from "./SubPages/ContactUsPage";
 import OurProducts from "./MainPages/OurProducts";
+import NoProducts from "./Tool/NoProducts";
 
 function App() {
   // Render Data
@@ -33,7 +34,9 @@ function App() {
           <Route path={"users"} element={<Users />} />
           <Route path={"users/:id"} element={<UpdateUser />} />
           <Route path={"createUser"} element={<CreateUser />} />
-          <Route path={"dash-products"} element={<Products />} />
+          <Route element={<NoProducts />}>
+            <Route path={"dash-products"} element={<Products />} />
+          </Route>
           <Route path={"createProducts"} element={<CreateProducts />} />
           <Route path={"dash-products/:id"} element={<UpdateProducts />} />
         </Route>

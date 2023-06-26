@@ -1,81 +1,15 @@
-import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import Cookies from "universal-cookie";
-import { User } from "../../UserContext";
 import { Link } from "react-router-dom";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
   const [run, setRun] = useState(0);
 
-  let cookie = new Cookies();
-  let getToken = cookie.get("Bearer");
-
-  let context = useContext(User);
-  let token = context.auth.token;
-
-  // useEffect(() => {
-  //   axios
-  //     .get("http://127.0.0.1:8000/api/product/show", {
-  //       headers: {
-  //         Accept: "application/json",
-  //         Authorization: "Bearer " + token,
-  //       },
-  //     })
-  //     .then((data) => {
-  //       setProducts(data.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, [run]);
-
-  // run
-
-  // async function deleteProduct(id) {
-  //   try {
-  //     let res = await axios.delete(
-  //       `http://127.0.0.1:8000/api/product/delete/${id}`,
-  //       {
-  //         headers: {
-  //           Authorization: "Bearer " + getToken,
-  //         },
-  //       }
-  //     );
-  //     if (res.status === 200) {
-  //       setRun((prev) => prev + 1);
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
-
-  // let showProducts = products.map((product, index) => (
-  //   <tr key={index}>
-  //     <td>{index + 1}</td>
-  //     <td>{product.title}</td>
-  //     <td>{product.description}</td>
-  //     <td>
-  //       <Link to={`${product.id}`}>
-  //         <i
-  //           className="fa-solid fa-edit"
-  //           style={{ color: "#74AFB9", cursor: "pointer" }}
-  //         ></i>
-  //       </Link>
-  //       <Link>
-  //         <i
-  //           className="fa-solid fa-trash "
-  //           style={{ color: "red" }}
-  //           onClick={() => deleteProduct(product.id)}
-  //         ></i>
-  //       </Link>
-  //     </td>
-  //   </tr>
-  // ));
-
   useEffect(() => {
     try {
       let getData = localStorage.getItem("SendProducts");
       let convertToJson = JSON.parse(getData);
-      setProducts(convertToJson);
+      setProducts(convertToJson); 
     } catch (err) {
       console.log(err);
     }

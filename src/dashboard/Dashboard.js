@@ -8,6 +8,7 @@ import { FaUsers } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa";
 import { FaSearchPlus } from "react-icons/fa";
 import { FaPlusCircle } from "react-icons/fa";
+import NoProducts from "../Tool/NoProducts";
 
 export default function Dashboard() {
   const [click, setClick] = useState(false);

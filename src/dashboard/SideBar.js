@@ -6,6 +6,8 @@ import { FaSearchPlus } from "react-icons/fa";
 import { FaPlusCircle } from "react-icons/fa";
 
 export default function SideBar() {
+  let products = localStorage.getItem("SendProducts");
+  let convertProducts = JSON.parse(products);
   return (
     <div className="side-bar">
       <nav>
@@ -17,10 +19,14 @@ export default function SideBar() {
           <FaUserPlus />
           Create Users
         </NavLink>
-        <NavLink className={"item-link"} to={"dash-products"}>
-          <FaSearchPlus />
-          Products
-        </NavLink>
+        {convertProducts === 0 ? (
+          <NavLink className={"item-link"} to={"dash-products"}>
+            <FaSearchPlus />
+            Products
+          </NavLink>
+        ) : (
+          ""
+        )}
         <NavLink className={"item-link"} to={"createProducts"}>
           <FaPlusCircle />
           Create Products

@@ -7,11 +7,19 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [passwordR, setPasswordR] = useState("");
   const [accept, setAccept] = useState(false);
-  const [flag, setFlag] = useState(true);
+  const [flag, setFlag] = useState(false);
   const [sendUser, setSendUser] = useState([]);
   const [id, setId] = useState(1);
 
   let nav = useNavigate();
+
+  useEffect(() => {
+    if (name === "" || password.length === 0 || passwordR !== password) {
+      setFlag(false);
+    } else {
+      setFlag(true);
+    }
+  }, [flag]);
 
   function sendData(e) {
     e.preventDefault();
@@ -20,6 +28,24 @@ export default function SignUp() {
       setFlag(false);
     } else {
       setFlag(true);
+      let dataUser = {
+        id: id,
+        name: name,
+        email: email,
+        password: password,
+        passwordConfirmation: passwordR,
+      };
+      setId((prev) => prev + 1);
+
+      const updatedUsers = [...sendUser, dataUser];
+
+      setSendUser(updatedUsers);
+      console.log(id);
+
+      localStorage.setItem("SendUser", JSON.stringify(dataUser));
+      localStorage.setItem("SendUsers", JSON.stringify(updatedUsers));
+
+      nav("/");
     }
     if (flag) {
       let dataUser = {
@@ -30,14 +56,11 @@ export default function SignUp() {
         passwordConfirmation: passwordR,
       };
       setId((prev) => prev + 1);
-      // sendUserContext.setAuth(dataUser);
 
       const updatedUsers = [...sendUser, dataUser];
 
       setSendUser(updatedUsers);
       console.log(id);
-
-      // sendUsersContext.setUsers(updatedUsers);
 
       localStorage.setItem("SendUser", JSON.stringify(dataUser));
       localStorage.setItem("SendUsers", JSON.stringify(updatedUsers));
@@ -51,7 +74,6 @@ export default function SignUp() {
 
     if (storedData) {
       const parsedData = JSON.parse(storedData);
-      // console.log(parsedData.length);
       setId(parsedData.length + 1);
 
       setSendUser(parsedData);
@@ -80,7 +102,7 @@ export default function SignUp() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        {accept && <p className="error">Email is Alerady been taken</p>}
+        {/* {accept && <p className="error">Email is Alerady been taken</p>} */}
         <label htmlFor="password">Password</label>
         <input
           type="password"
@@ -104,9 +126,7 @@ export default function SignUp() {
           <p className="error">Repeat Password should be the same</p>
         )}
         <div className="rgister">
-          <button type="submit" onSubmit={sendData}>
-            Register
-          </button>
+          <button type="submit">Register</button>
         </div>
       </form>
     </div>

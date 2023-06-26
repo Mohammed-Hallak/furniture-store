@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Landing from "./Landing";
 import AboutUs from "./AboutUs";
 import Categories from "./Categories";
 import Collection from "./Collection";
 import Brands from "./Brands";
 import ContactUs from "./ContactUs";
-
 import Footer from "./Footer";
 import GoToTop from "../Tool/GoToTop";
 import Testimonial from "../Testimonial";

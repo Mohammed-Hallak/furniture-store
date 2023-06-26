@@ -8,7 +8,6 @@ import { FaPlusCircle } from "react-icons/fa";
 export default function SideBar() {
   return (
     <div className="side-bar">
-      
       <nav>
         <NavLink className={"item-link"} to={"users"}>
           <FaUsers />
@@ -18,7 +17,7 @@ export default function SideBar() {
           <FaUserPlus />
           Create Users
         </NavLink>
-        <NavLink className={"item-link"} to={"products"}>
+        <NavLink className={"item-link"} to={"dash-products"}>
           <FaSearchPlus />
           Products
         </NavLink>

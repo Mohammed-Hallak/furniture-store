@@ -84,7 +84,7 @@ export default function Testimonial() {
   return (
     <div className="testimonial">
       <div className="container">
-        <h2>Testimonial</h2>
+        <h2>Our Team</h2>
 
         <Slider
           renderControls={(next, previous) => [

@@ -27,7 +27,7 @@ export default function Dashboard() {
             click ? "click drop-down dashboard" : "drop-down dashboard"
           }
         >
-          <i className=" fa-solid fa-bars"></i>
+          <i className=" fa-solid fa-bars dash-i"></i>
           <div className="holder">
             <nav>
               <NavLink className={"item-link"} to={"users"}>
@@ -38,7 +38,7 @@ export default function Dashboard() {
                 <FaUserPlus />
                 Create Users
               </NavLink>
-              <NavLink className={"item-link"} to={"products"}>
+              <NavLink className={"item-link"} to={"dash-products"}>
                 <FaSearchPlus />
                 Products
               </NavLink>

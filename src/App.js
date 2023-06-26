@@ -33,9 +33,9 @@ function App() {
           <Route path={"users"} element={<Users />} />
           <Route path={"users/:id"} element={<UpdateUser />} />
           <Route path={"createUser"} element={<CreateUser />} />
-          <Route path={"products"} element={<Products />} />
+          <Route path={"dash-products"} element={<Products />} />
           <Route path={"createProducts"} element={<CreateProducts />} />
-          <Route path={"products/:id"} element={<UpdateProducts />} />
+          <Route path={"dash-products/:id"} element={<UpdateProducts />} />
         </Route>
         {/* </Route> */}
         {/* </Route> */}

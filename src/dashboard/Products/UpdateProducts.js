@@ -94,7 +94,7 @@ export default function UpdateProducts() {
 
           setProducts(updatedUsers);
 
-          nav("/dashboard/products");
+          nav("/dashboard/dash-products");
 
           return <span key={index}></span>;
         }

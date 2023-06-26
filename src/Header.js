@@ -3,39 +3,32 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Header() {
   let nav = useNavigate();
-  const ref = useRef();
-  const [click, setClick] = useState(false);
-
   function logout(e) {
     e.preventDefault();
     localStorage.removeItem("SendUser");
     nav("/");
   }
 
+  const ref = useRef(null);
+  const holderref = useRef(null);
+  const [click, setClick] = useState(false);
+
   useEffect(() => {
-    // إضافة مستمع حدث النقر إلى document
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target) && !holderref.current.contains(e.target)) {
+        setClick(false);
+      }
+    };
     document.addEventListener("click", handleClickOutside);
 
     return () => {
-      // إزالة مستمع حدث النقر عند إزالة المكون
       document.removeEventListener("click", handleClickOutside);
     };
-  }, []);
-
-  const handleClickOutside = (e) => {
-    // تحقق مما إذا كانت النقرة خارج المحتوى أو على أي عنصر آخر غير المحتوى
-    if (ref.current && !ref.current.contains(e.target) && e.target.className !== "content" && e.target.className !== "fa-solid fa-bars") {
-      setClick(false);
-    } else {
-      setClick(true);
-    }
-  };
+  }, [ref]);
 
   function openDropDown(e) {
     e.preventDefault();
-    if (!click || e.target.className === "fa-solid fa-bars") {
-      setClick(!click);
-    }
+    setClick(!click);
   }
 
   return (
@@ -46,7 +39,7 @@ export default function Header() {
             <h1 className="title">AlHallak</h1>
           </div>
 
-          <div className={click ? "drop-down click" : "drop-down"}>
+          <div ref={holderref} className={click ? "drop-down click" : "drop-down"}>
             <i
               onClick={openDropDown}
               ref={ref}

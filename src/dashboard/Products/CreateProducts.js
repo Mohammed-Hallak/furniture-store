@@ -12,7 +12,6 @@ export default function CreateProducts() {
   const [id, setId] = useState(1);
   const [products, setProducts] = useState([]);
 
-
   let cookie = new Cookies();
   let token = cookie.get("Bearer");
 
@@ -62,14 +61,15 @@ export default function CreateProducts() {
       };
 
       setSendProducts(data);
-      window.location.pathname="dashboard/products"
+      nav("/dashboard/dash-products");
 
       setId(id + 1);
     }
   }
 
   function setSendProducts(newProduct) {
-    let existingProducts = JSON.parse(localStorage.getItem("SendProducts")) || [];
+    let existingProducts =
+      JSON.parse(localStorage.getItem("SendProducts")) || [];
     existingProducts.push(newProduct);
     localStorage.setItem("SendProducts", JSON.stringify(existingProducts));
     setProducts(existingProducts);
@@ -80,7 +80,7 @@ export default function CreateProducts() {
     if (getProduct) {
       let convertToJson = JSON.parse(getProduct);
       setProducts(convertToJson);
-      setId(convertToJson.length + 1); 
+      setId(convertToJson.length + 1);
     }
   }, []);
 

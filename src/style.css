@@ -93,11 +93,6 @@ form {
     text-align: center;
     position: relative;
   }
-  @media (max-width: 768px) {
-    .drop-down {
-      margin-right: 20px;
-    }
-  }
 
   .drop-down i {
     font-size: 30px;
@@ -124,6 +119,9 @@ form {
   .drop-down.click i::after {
     display: inline;
   }
+  .drop-down.click i.dash-i::after {
+    bottom: -10px;
+  }
   .drop-down .holder {
     width: 570px;
     height: 440px;
@@ -142,12 +140,6 @@ form {
   .drop-down.click .holder {
     display: inline-block;
   }
-  @media (max-width: 564px) {
-    .drop-down .holder {
-      width: 300px;
-      left: -265px;
-    }
-  }
   .drop-down .holder .register-nav {
     outline: none;
     border: none;
@@ -164,6 +156,19 @@ form {
     width: 75%;
     margin: auto;
     margin-bottom: 10px;
+    transition: 0.3s;
+  }
+}
+
+@media (max-width: 768px) {
+  .drop-down {
+    margin-right: 20px;
+  }
+}
+@media (max-width: 564px) {
+  .drop-down .holder {
+    width: 300px;
+    left: -265px;
   }
 }
 
@@ -207,7 +212,7 @@ input {
 
 input:focus {
   color: rgba(0, 0, 0, 0.5);
-  border-color: #86b7fe;
+  border-color: var(--main-color);
 }
 
 .rgister {
@@ -1235,7 +1240,7 @@ p.error {
   background-color: var(--main-color);
   top: 50%;
   transform: translateY(-50%);
-  left: 220px;
+  left: 180px;
 }
 @media (max-width: 992px) {
   .testimonial h2::before {

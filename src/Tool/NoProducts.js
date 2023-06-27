@@ -7,7 +7,7 @@ export default function NoProducts() {
   let products = localStorage.getItem("SendProducts");
   let convertProducts = JSON.parse(products);
 
-  return convertProducts.length === 0 ? (
+  return convertProducts === null || convertProducts.length === 0 ? (
     <Navigate state={{ from: location }} replace to={"./createProducts"} />
   ) : (
     <Products />

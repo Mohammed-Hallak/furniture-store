@@ -19,7 +19,7 @@ export default function SideBar() {
           <FaUserPlus />
           Create Users
         </NavLink>
-        {convertProducts.length !== 0 ? (
+        {convertProducts === null ? (
           <NavLink style={{display:"inline-block"}} className={"item-link"} to={"dash-products"}>
             <FaSearchPlus />
             Products

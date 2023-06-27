@@ -19,13 +19,16 @@ export default function SideBar() {
           <FaUserPlus />
           Create Users
         </NavLink>
-        {convertProducts === 0 ? (
-          <NavLink className={"item-link"} to={"dash-products"}>
+        {convertProducts.length !== 0 ? (
+          <NavLink style={{display:"inline-block"}} className={"item-link"} to={"dash-products"}>
             <FaSearchPlus />
             Products
           </NavLink>
         ) : (
-          ""
+          <NavLink style={{display:"none"}} className={"item-link"} to={"dash-products"}>
+            <FaSearchPlus />
+            Products
+          </NavLink>
         )}
         <NavLink className={"item-link"} to={"createProducts"}>
           <FaPlusCircle />

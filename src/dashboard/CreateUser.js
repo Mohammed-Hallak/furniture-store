@@ -70,6 +70,7 @@ export default function CreateUser() {
       localStorage.setItem("SendUsers", JSON.stringify(updatedUsers));
 
       nav("/dashboard/users");
+      
     }
   }
 
